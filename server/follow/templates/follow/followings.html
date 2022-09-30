@@ -1,0 +1,42 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my-4">
+    <h3>{{ target_user.user_name }}さんのフォロー関係</h3>
+</div>
+
+<ul class="nav nav-tabs text-center">
+    <li class="nav-item col-6 p-2">
+        <a class="nav-link active bg-white text-dark border font-weight-bold" href="/follow/followings/{{ target_user.id }}">
+            フォロー中
+        </a>
+    </li>
+    <li class="nav-item col-6 p-2">
+        <a class="nav-link text-muted border font-weight-bold" href="/follow/followers/{{ target_user.id }}"
+            onMouseOver="this.style.color='#0067C0'; this.style.textDecoration='underline';"
+            onMouseOut="this.style.color='#000'; this.style.textDecoration='none';">
+            フォロワー
+        </a>
+    </li>
+</ul>
+<div class="list-group">
+    {% for following in followings %}
+
+    <a href="{% url 'account_userpage' following.id %}" class="d-flex mb-5">
+        <img class="col-1 p-2"
+            src="{{ following.user_icon }}">
+        <div class="col-2 p-2 font-weight-bold"
+            onMouseOver="this.style.color='#0067C0'; this.style.textDecoration='underline';"
+            onMouseOut="this.style.color='#000'; this.style.textDecoration='none';">
+            {{following}}
+        </div>
+        <div class="col-8 p-2">{{ following.profile }}</div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+<p></p>

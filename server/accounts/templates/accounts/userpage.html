@@ -1,0 +1,121 @@
+{% extends "app/base.html" %}
+<!--zhu-->
+<!-- change the navibar -->
+
+{% block navi %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'account_logout' %}">ホームページへ</a>
+    </li>
+
+{% endblock %}
+
+<!-- my page content-->
+
+{% block content %}
+
+    <div>
+    <br>
+    <br>
+    </div>
+
+    <div class="container">
+        <div class="media">
+            <a class="media-left" href="#">
+                 <img src="{{ user_icon }}" class="rounded-circle alt="HelPic" width="300" >
+
+            </a>
+            <div class="media-body">
+                <br><br><br>
+                <br><br><br>
+                <h2 class="media-heading">
+                     <p style="color:#BF0201">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;{{ user_name }}&nbsp;の&nbsp;ページへ&nbsp;ようこそ！</b></p>
+                </h2>
+
+
+            </div>
+            </div>
+        </div>
+
+    <br><br>
+        <div >
+
+                &nbsp;&nbsp; &nbsp;&nbsp;
+
+
+                &nbsp;&nbsp; &nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp;
+                <style>
+            input[type=button], input[type=submit], input[type=reset] {
+              background-color: #BF0201;
+              border: none;
+              color: white;
+              padding: 16px 32px;
+              text-decoration: none;
+              margin: 4px 2px;
+              cursor: pointer;
+            }
+            </style>
+
+            <script>
+                function hao() {
+                   if (document.form1.ok.value=="フォロー")
+                   {
+                     document.form1.ok.value="フォロー中";
+                   }
+                   else
+                   {
+                     document.form1.ok.value="フォロー";
+                   }
+                }
+                </script>
+
+                <form name="form1" method="post" action="">
+                    <input name="ok" type="button" id="ok" value="フォロー" onClick="hao();">
+                </form>
+
+        </div>
+
+    <div>
+       <br><br>
+    <h4>
+      &#x1F34D; 自己紹介
+    </h4>
+
+    <p class="text-secondary">{{ profile }}
+        </p>
+    </div>
+
+     <h4>
+       &#x1F34A; 年齢: {{ sedai }}&nbsp;代
+    </h4>
+
+
+
+    <div>
+     <br><br>
+            <br>
+    <h4>
+        経験値: &#x1F33B;&#x1F33B;&#x1F33B;&#x1F33B;&#x1F33B;&#x1F33B;&#x2B1C;&#x2B1C;&#x2B1C;&#x2B1C;
+    </h4>
+        <br>
+    <h4>
+        音声紹介
+    </h4>
+
+    <figure>
+    <figcaption>  私の声:</figcaption>
+    <audio
+        controls
+        src="{{ sound_profile }}">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </figure>
+
+    </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+            <div class="row m-5">
+            <div class="col-md-12">
+                <form class="card card-sm">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col">
+                            <input type="search" name='item_name' placeholder="投稿の検索" class="form-control form-control-borderless">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-success" type="submit" >検索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+<div class="row my-4">
+    <div class="col-md-8">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="/home">タイムライン</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/study">開催予定の勉強会</a>
+            </li>
+        </ul>
+        {% for post, img in post_data %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <a href="{% url 'post_detail' post.author_id %}">
+                </a>
+                <div class="mb-10">
+                    <h2 class="card-title">
+                        <div>
+                            <a href="{% url 'account_userpage' post.author_id %}" class="media-left">
+                        <img src="{{ img }}" style="max-width:10%;"/>
+                            </a>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ post.title }}
+                        </div>
+
+                    </h2>
+                    <p class="card-text">{{ post.content | truncatechars:100}}</p>
+                </div>
+                
+                </div>
+                <div class="card-body">
+                <a href="{% url 'post_detail' post.id %}">
+                    <div class="btn btn-warning">
+                        詳細
+                    </div>
+                </a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ post.created|date }} by {{ post.author}}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <div class="card-body text-center">
+                <a class=" btn btn-warning" href="/post/new">新規投稿</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

@@ -1,0 +1,30 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+
+{% block content%}
+
+<div class="my-4">
+    <h2>勉強会のお知らせを投稿</h2>
+</div>
+
+<form method="post" class="mb-xl-0">
+    {% csrf_token %}
+    <div class="mb-4">
+        <a class="btn btn-warning" href="/post/new">タイムラインへ投稿する際はこちら</a>
+    </div>
+    <div class="formpost">
+        {% render_field form.title class="form-control" placeholder="タイトルを入力" %}
+    </div>
+
+    <div class="formpost">
+        {% render_field form.content class="form-control" placeholder="開催日時：2022年9月16日　勉強会の内容を入力" %}
+    </div>
+    <div class="formpost">
+        {% render_field form.link class="form-control" placeholder="会議のURLを入力" %}
+    </div>
+
+    <button class="btn btn-warning" type="submit">投稿する</button>
+</form>
+<br>
+
+{% endblock %}
